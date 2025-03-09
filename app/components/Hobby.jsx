@@ -22,20 +22,10 @@ export function QuiltedImageList() {
   if (!isClient) return null; // Prevents SSR-related issues
 
   return (
-    <ImageList
-      sx={{ width: "50%", height: 450 }}
-      variant="quilted"
-      cols={4}
-      rowHeight={121}
-    >
+    <ImageList sx={{ width: "50%", height: 450 }} variant="quilted" cols={4} rowHeight={121}>
       {itemData.map((item) => (
         <ImageListItem key={item.img} cols={item.cols || 1} rows={item.rows || 1}>
-          <img
-            {...srcset(item.img, 121, item.rows, item.cols)}
-            alt={item.title}
-            loading="lazy"
-            style={{ filter: "grayscale(100%)" }} // Apply grayscale filter
-          />
+          <img {...srcset(item.img, 121, item.rows, item.cols)} alt={item.title} loading="lazy" style={{ filter: "grayscale(100%)" }} />
         </ImageListItem>
       ))}
     </ImageList>
@@ -43,30 +33,9 @@ export function QuiltedImageList() {
 }
 
 const itemData = [
-  {
-    img: "/photos/pixellensLogo.png", // Corrected path
-    title: "Breakfast",
-    rows: 2,
-    cols: 2,
-  },
-  {
-    img: "/photos/20240323_105154.jpg",
-    title: "Burger",
-  },
-  {
-    img: "/photos/IMG20240323120648.jpg",
-    title: "Camera",
-  },
-  // {
-  //   img: "/photos/club_walk.jpeg", // Fixed spacing in filename (if applicable)
-  //   title: "Coffee",
-  //   cols: 2,
-  // },
-  // {
-  //   img: "/photos/club_birthday.jpeg", // Fixed spacing in filename (if applicable)
-  //   title: "Hats",
-  //   cols: 2,
-  // },
+  { img: "/photos/pixellensLogo.png", title: "Breakfast", rows: 2, cols: 2 },
+  { img: "/photos/20240323_105154.jpg", title: "Burger" },
+  { img: "/photos/IMG20240323120648.jpg", title: "Camera" },
 ];
 
 export function HobbyList() {
@@ -78,7 +47,6 @@ export function HobbyList() {
             Photography and Filmmaking
           </span>
         </Typography>
-
         <Typography variant="body1" gutterBottom>
           Since my childhood, I have always enjoyed taking photos. Capturing moments has always fascinated me. I am part of a college filming club called Pixellen, where I meet wonderful people who share the same passion. Together, we create short films, participate in competitions, and have a great time.
         </Typography>
