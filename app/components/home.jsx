@@ -62,7 +62,7 @@ gsap.fromTo(
             icon: <FaGithub className="w-8 h-8" />,
           },
           {
-            href: "portfolio-two-sand-91.vercel.app/",
+            href: "/",
             icon: <FaGlobe className="w-8 h-8" />,
           },
         ].map((link, index) => (
