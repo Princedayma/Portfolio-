@@ -41,7 +41,7 @@ export default function Header() {
         <Link href="/Hobby" className="text-gray-700 dark:text-gray-200 hover:text-blue-400">
           Hobby
         </Link>
-        <Link href="" className="text-gray-700 dark:text-gray-200 hover:text-blue-400">
+        <Link href="https://drive.google.com/file/d/1ZVO4dXjh9Az3GxNMvNskJlH7KWIdmSB2/view?usp=drive_link" className="text-gray-700 dark:text-gray-200 hover:text-blue-400">
           Resume
         </Link>
        
