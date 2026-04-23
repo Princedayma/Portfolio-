@@ -89,7 +89,7 @@ export default function Home() {
           {[
             { label: "Projects Shipped", value: "8+" },
             { label: "Hackathons", value: "2" },
-            { label: "Users Impacted", value: "1k+" },
+            { label: "Best Hackathon Rank", value: "Top 50" },
             { label: "Core Stack", value: "MERN" },
           ].map((item, index) => (
             <div
