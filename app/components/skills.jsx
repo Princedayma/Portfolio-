@@ -1,89 +1,51 @@
-"use client"
-import React, { useEffect, useRef } from 'react';
-import { Chip, Box, Typography } from '@mui/material';
-import FaceIcon from '@mui/icons-material/Face';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+"use client";
+import React from "react";
 
-gsap.registerPlugin(ScrollTrigger);
+const skillsData = [
+  {
+    category: "Frontend",
+    items: ["Next.js", "React", "Tailwind CSS", "JavaScript", "Responsive UI"],
+  },
+  {
+    category: "Backend",
+    items: ["Node.js", "Express", "MongoDB", "REST APIs", "Auth Flow Design"],
+  },
+  {
+    category: "Tools & Workflow",
+    items: ["Git/GitHub", "Vercel", "Postman", "Problem Solving", "Debugging"],
+  },
+  {
+    category: "Learning Focus",
+    items: ["System Design Basics", "Performance Optimization", "TypeScript"],
+  },
+];
 
 const Skills = () => {
-  const skillRefs = useRef([]);
-
-  const addToRefs = (el) => {
-    if (el && !skillRefs.current.includes(el)) {
-      skillRefs.current.push(el);
-    }
-  };
-
-  useEffect(() => {
-    skillRefs.current.forEach((el) => {
-      gsap.fromTo(
-        el,
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: el,
-            start: 'top 80%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
-    });
-  }, []);
-
-  const skillsData = [
-    {
-      category: 'Web Development',
-      skills: ['Next.js', 'React.js', 'HTML', 'CSS', 'JavaScript'],
-    },
-    {
-      category: 'Backend',
-      skills: ['Node.js', 'Express', 'MongoDB'],
-    },
-    {
-      category: 'DevOps',
-      skills: ['Docker'],
-    },
-    {
-      category: 'Artificial Intelligence & Machine Learning',
-      skills: ['Python', 'Numpy', 'PyTorch', 'Pandas'],
-    },
-  ];
-
   return (
-    <Box className="w-full bg-white text-black dark:bg-black dark:text-white p-2" sx={{ paddingTop: 12, paddingLeft: 8, paddingRight: 8}}>
-      <Typography className="p-2" variant="h4" gutterBottom>
-        <FaceIcon/>
-        Skills
-      </Typography>
-      {skillsData.map((group, index) => (
-        <Box key={index} sx={{ marginBottom: 3 }}>
-          <Typography variant="h6" gutterBottom>
-            {group.category}
-          </Typography>
-          <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-            {group.skills.map((skill, idx) => (
-              <Chip
-                key={idx}
-                ref={addToRefs}
-                icon={<GitHubIcon />}
-                label={skill}
-                variant={idx % 2 === 0 ? 'filled' : 'outlined'}
-                color="Secondry"
-                size="medium"
-                className="bg-white text-black dark:bg-black dark:text-white m-2 hover:scale-110 hover:shadow-lg transition-transform duration-800 ease-in-out"
-              />
-            ))}
-          </Box>
-        </Box>
-      ))}
-    </Box>
+    <section className="mx-auto w-full max-w-6xl bg-white px-6 py-16 text-black dark:bg-black dark:text-white">
+      <h2 className="text-3xl font-semibold">Skills</h2>
+      <p className="mt-3 max-w-3xl text-sm text-slate-600 dark:text-slate-300">
+        Organized for hiring relevance: what I can ship today, and what I am actively leveling up.
+      </p>
+
+      <div className="mt-8 grid gap-5 md:grid-cols-2">
+        {skillsData.map((group) => (
+          <article key={group.category} className="rounded-xl border border-slate-200 p-5 dark:border-slate-800">
+            <h3 className="text-lg font-semibold">{group.category}</h3>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {group.items.map((skill) => (
+                <span
+                  key={skill}
+                  className="rounded-md border border-slate-300 px-2.5 py-1.5 text-xs font-medium text-slate-700 dark:border-slate-700 dark:text-slate-300"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
   );
 };
 
