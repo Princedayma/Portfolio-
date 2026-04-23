@@ -1,74 +1,49 @@
-import { AvatarGroup, Avatar } from '@mui/material';
-import Image from 'next/image';
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { BrowseGalleryTwoTone, GitHub, Language, OpenInBrowser } from '@mui/icons-material';
+import { GitHub, Language } from "@mui/icons-material";
 
-export default function ProjectCard({ title, description, link, link2, date, avatars }) {
-  const cardRef = useRef(null);
-  const avatarsRef = useRef([]);
-  avatarsRef.current = [];
-
-  const addToAvatarsRef = (el) => {
-    if (el && !avatarsRef.current.includes(el)) {
-      avatarsRef.current.push(el);
-    }
-  };
-
-  useEffect(() => {
-    gsap.fromTo(
-      cardRef.current,
-      { opacity: 0, y: 50 },
-      { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }
-    );
-
-    gsap.fromTo(
-      avatarsRef.current,
-      { opacity: 0, scale: 0 },
-      { opacity: 1, scale: 1, duration: 1, ease: 'back.out(1.7)', stagger: 0.1 }
-    );
-  }, []);
-
+export default function ProjectCard({ title, description, link, link2, date, stack = [], impact = [], featured = false }) {
   return (
-    <div ref={cardRef} className="border p-4 rounded shadow relative bg-white dark:bg-black">
-      {/* Display Date */}
-      <div className="absolute top-2 left-2 text-gray-500 text-sm">{date}</div>
-
-      {/* Avatar Group */}
-      <div className="flex justify-end mt-4">
-        <AvatarGroup max={4}>
-          {avatars.map((avatar, index) => (
-            <Avatar  sx={{ width: 24, height: 24 }}
-            key={index} ref={addToAvatarsRef}>
-              <Image
-                src={avatar}
-                alt={`Avatar ${index + 1}`}
-                width={60}
-                height={60}
-                className="rounded-full"
-              />
-            </Avatar>
-          ))}
-        </AvatarGroup>
-      </div>
-
-      {/* Title and Description */}
-      <div className="mt-8">
-        <h2 className="text-xl font-bold dark:text-white">{title}</h2>
-        <p className="mt-2 text-gray-700 dark:text-gray-300">{description}</p>
-
-        {/* Links */}
-        <div className="flex justify-end space-x-4 mt-4">
-          <a href={link} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-blue-500">
-          <GitHub/>
-          </a>
-          {link2 && (
-            <a href={link2} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-blue-500">
-            <Language/>
-            </a>
-          )}
+    <article className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:shadow-md dark:border-slate-800 dark:bg-black">
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <h3 className="text-xl font-semibold dark:text-white">{title}</h3>
+          <p className="mt-1 text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">{date}</p>
         </div>
+        {featured && (
+          <span className="rounded-full border border-slate-300 px-2 py-1 text-[10px] font-semibold uppercase tracking-wider text-slate-600 dark:border-slate-700 dark:text-slate-300">
+            Featured
+          </span>
+        )}
       </div>
-    </div>
+
+      <p className="mt-4 text-sm text-slate-700 dark:text-slate-200">{description}</p>
+
+      <ul className="mt-4 space-y-2">
+        {impact.map((point) => (
+          <li key={point} className="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-300">
+            <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-slate-500 dark:bg-slate-300" />
+            {point}
+          </li>
+        ))}
+      </ul>
+
+      <div className="mt-4 flex flex-wrap gap-2">
+        {stack.map((item) => (
+          <span key={item} className="rounded-md border border-slate-300 px-2 py-1 text-xs text-slate-700 dark:border-slate-700 dark:text-slate-300">
+            {item}
+          </span>
+        ))}
+      </div>
+
+      <div className="mt-5 flex justify-end gap-4">
+        <a href={link} target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-blue-500" aria-label={`${title} GitHub repository`}>
+          <GitHub />
+        </a>
+        {link2 && (
+          <a href={link2} target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-blue-500" aria-label={`${title} live demo`}>
+            <Language />
+          </a>
+        )}
+      </div>
+    </article>
   );
 }
