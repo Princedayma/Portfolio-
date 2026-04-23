@@ -106,37 +106,3 @@ export default function Home() {
     </section>
   );
 }
-      </h1>
-      <p ref={paragraphRef} className="mt-4 text-lg font-mono text-center">
-      Hello, my name is Prince. I am a passionate undergraduate and a tech enthusiast who enjoys learning about new technologies and exploring new things.
-      </p>
-      <div className="mt-6 flex space-x-4">
-        {[
-          {
-            href: "www.linkedin.com/in/prince-dayma-ab6271333",
-            icon: <FaLinkedin className="w-8 h-8" />,
-          },
-          {
-            href: "https://github.com/Princedayma",
-            icon: <FaGithub className="w-8 h-8" />,
-          },
-          {
-            href: "/",
-            icon: <FaGlobe className="w-8 h-8" />,
-          },
-        ].map((link, index) => (
-          <a
-            key={index}
-            href={link.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-600 dark:text-gray-300 hover:text-blue-700 dark:hover:text-blue-400 transition-colors duration-300"
-            ref={(el) => (iconsRef.current[index] = el)} // Assigning refs to each icon
-          >
-            {link.icon}
-          </a>
-        ))}
-      </div>
-    </section>
-  );
-}
